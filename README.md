@@ -1,13 +1,15 @@
-# Start ML Project
+# California Housing Data Exploration
 
-This repository currently contains the Python environment setup for the project. No application entry point or training script is included yet.
+This project fetches the California Housing dataset using scikit-learn, loads it as a pandas DataFrame, and prints the first five rows and the dataset dimensions.
 
 ## Requirements
 
-- Python 3. Install a version compatible with the packages in `requirements.txt`.
-- Bash, to run the provided setup script.
+- Python 3
+- Internet access on the first run so scikit-learn can download the dataset
 
-## Setup
+Python dependencies are pinned in [`requirements.txt`](requirements.txt).
+
+## Run
 
 From the project root, run:
 
@@ -15,30 +17,24 @@ From the project root, run:
 bash run.sh
 ```
 
-This creates a virtual environment in `.venv`, activates it for the script, and installs the pinned dependencies from `requirements.txt`.
+The script creates a `.venv` virtual environment if one does not already exist, installs the dependencies, and runs `main.py`. The output includes a preview of the data and its number of rows and columns.
 
-To activate the environment in your current terminal after setup:
+You can also run the program manually after activating the environment:
 
 ```bash
 source .venv/bin/activate
+python main.py
 ```
 
-On Windows, create and activate the environment with the platform-specific commands instead:
+On Windows PowerShell, set up and run it with:
 
 ```powershell
 py -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
+python main.py
 ```
 
-## Running the project
+## Dataset
 
-There is currently no application or model script to run. Once one is added, its launch command can be documented here.
-
-## Dependencies
-
-The project dependencies are listed and version-pinned in [`requirements.txt`](requirements.txt). To install or update them manually inside the active environment, run:
-
-```bash
-python -m pip install -r requirements.txt
-```
+`main.py` uses `sklearn.datasets.fetch_california_housing(as_frame=True)`. The fetched frame contains the dataset features and the `MedHouseVal` target. Scikit-learn caches the downloaded dataset for subsequent runs.
