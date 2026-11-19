@@ -22,17 +22,17 @@ From the project root, run:
 bash run.sh
 ```
 
-By default, this prints the data exploration report. Pass a mode to `main.py` to choose an action:
+Choose an action by passing its mode to `run.sh`:
 
 ```bash
-python main.py --describe
-python main.py --split
+bash run.sh --describe
+bash run.sh --split
 ```
 
-`--split` creates `data/splits/train.csv` and `data/splits/test.csv` with an 80/20 split and fixed random seed. You can adjust the split and output location:
+`--describe` prints the data exploration report. `--split` creates `data/splits/train.csv` and `data/splits/test.csv` with an 80/20 split and fixed random seed. You can adjust the split and output location:
 
 ```bash
-python main.py --split --test-size 0.25 --random-state 7 --output-dir data/my-split
+bash run.sh --split --test-size 0.25 --random-state 7 --output-dir data/my-split
 ```
 
 The test set should be held aside until model selection and hyperparameter tuning are complete. Use only the training data for those steps, then evaluate the selected model once on the test set.

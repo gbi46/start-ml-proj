@@ -10,4 +10,4 @@ source .venv/bin/activate
 pip install -q -r requirements.txt
 echo "All dependencies are ready"
 
-python main.py
+python main.py "$@"
