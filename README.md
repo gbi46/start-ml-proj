@@ -1,6 +1,6 @@
 # California Housing Data Exploration
 
-This project fetches the California Housing dataset using scikit-learn, loads it as a pandas DataFrame, and prints a colored exploration report to the terminal: a data preview, the target, the features, missing values, correlation with the target, a basic data leakage check, and duplicate rows.
+This project fetches the California Housing dataset using scikit-learn. It can print a colored data exploration report or create a reproducible train/test split as CSV files.
 
 ## Requirements
 
@@ -21,6 +21,21 @@ From the project root, run:
 ```bash
 bash run.sh
 ```
+
+By default, this prints the data exploration report. Pass a mode to `main.py` to choose an action:
+
+```bash
+python main.py --describe
+python main.py --split
+```
+
+`--split` creates `data/splits/train.csv` and `data/splits/test.csv` with an 80/20 split and fixed random seed. You can adjust the split and output location:
+
+```bash
+python main.py --split --test-size 0.25 --random-state 7 --output-dir data/my-split
+```
+
+The test set should be held aside until model selection and hyperparameter tuning are complete. Use only the training data for those steps, then evaluate the selected model once on the test set.
 
 The script stops on the first error, creates a `.venv` virtual environment if one does not already exist, quietly installs the dependencies (including `rich`), and runs `main.py`.
 
@@ -86,7 +101,9 @@ The target is capped: the most expensive houses are recorded as `5.00001` (about
 
 ```
 .
-├── main.py           # loads the dataset and prints the exploration report
+├── main.py           # command-line entry point for exploration or splitting
+├── split_data.py     # creates and saves a train/test split
+├── description.py    # prints the exploration report
 ├── run.sh            # creates the virtual environment, installs dependencies, runs main.py
 ├── requirements.txt  # pinned Python dependencies
 └── README.md
